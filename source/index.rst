@@ -1,5 +1,5 @@
-Documentation of GANIL DAQ System for the ATTPC
-===============================================
+ATTPC DAQ Documentation
+=======================
 
 These pages contain documentation of the new DAQ system being used for the ATTPC. This system was originally developed at GANIL, and they have some documentation on their site_ for the project. The source code for the system is also available there, though it requires a login.
 
