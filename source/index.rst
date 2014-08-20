@@ -14,5 +14,6 @@ Contents
    :maxdepth: 3
    
    components.rst
+   exp_setup.rst
    ansible.rst
    directories.rst
