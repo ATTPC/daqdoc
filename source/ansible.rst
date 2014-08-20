@@ -59,7 +59,9 @@ A command can be run with :command:`sudo` by using the option ``--sudo``. For ex
 
 	$ ansible macminis -m command -a "reboot" --sudo
 
-Many commands could be done more efficiently by using Ansible's built-in modules. For information about this, see http://docs.ansible.com/modules.html.
+..  note::
+	
+	Many commands could be done more efficiently by using Ansible's built-in modules. For information about this, see http://docs.ansible.com/modules.html.
 
 Playbooks
 ---------
