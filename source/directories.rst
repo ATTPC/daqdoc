@@ -60,6 +60,8 @@ The path ``/data`` was chosen since it is the default for the DAQ system, and it
   
   - ``cleaned`` -- This points to ``/home/attpc/cleaned_data``. This is where reorganized data files are stored. Its contents are sorted by experiment name and run. These files are organized by the script :file:`rearrange_data` script.
 
+..  _ansible-scripts-dir:
+
 ``~/ansible-attpc`` Scripts directory
 -------------------------------------
 
