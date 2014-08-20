@@ -199,7 +199,7 @@ After waiting a moment, put the system back into :guilabel:`Editing mode`.
 
 ..  warning::
 
-    To be on the safe side, it is probably best to save and quit the DAQ system on the control computer before continuing. Do this by going back to the main menu and pressing :kbd:`q Enter y Enter`.
+    To be on the safe side, it is probably best to save and quit the DAQ system on the control computer before continuing. Do this by going back to the main menu and pressing :kbd:`tk Enter kall Enter`.
     
 Now open a terminal and execute the following commands:
 

@@ -5,6 +5,8 @@ These pages contain documentation of the new DAQ system being used for the ATTPC
 
 .. _site: http://wiki.ganil.fr/gap/wiki/GANIL-SPIRAL2-DAQ-Packages-Distribution
 
+This documentation focuses mainly on the DAQ system, and does not contain much information about the GET electronics or their config files.
+
 
 
 Contents
@@ -15,5 +17,6 @@ Contents
    
    components.rst
    exp_setup.rst
+   taking_data.rst
    ansible.rst
    directories.rst
