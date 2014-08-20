@@ -60,5 +60,21 @@ The path ``/data`` was chosen since it is the default for the DAQ system, and it
   
   - ``cleaned`` -- This points to ``/home/attpc/cleaned_data``. This is where reorganized data files are stored. Its contents are sorted by experiment name and run. These files are organized by the script :file:`rearrange_data` script.
 
+``~/ansible-attpc`` Scripts directory
+-------------------------------------
 
+This directory contains several scripts and Ansible playbooks for configuring the system, copying files, and other tasks. Any new scripts should be stored here for consistency.
+
+The contents of this directory are kept under version control using Git. Any changes should be committed to the repository using ``git commit`` and pushed to the remote repository using ``git push``. The local repository pushes to a remote repository hosted at https://bitbucket.org/jbradt/ansible-attpc which is publicly visible.
+
+The current contents of this folder are the following scripts:
+
+.. toctree::
+   :maxdepth: 1
+
+   daq-config
+   distrib-root-pubkey
+   distrib-experiment
+   fetch-data
+   rearrange_data
 
