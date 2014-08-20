@@ -53,7 +53,7 @@ For instance, to list the contents of :file:`/daq` on each computer, run
 
 	$ ansible macminis -m command -a "ls /daq"
 
-A command can be run with :command:`sudo` by using the option ``--sudo``. For example, to reboot all of the Mac Minis, run
+A command can be run with :command:`sudo` by using the option :option:`--sudo`. For example, to reboot all of the Mac Minis, run
 
 ..  code-block:: bash
 

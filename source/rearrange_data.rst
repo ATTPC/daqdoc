@@ -1,9 +1,9 @@
 .. highlight:: perl
 
-``rearrange_data.pl`` -- Script to rearrange fetched data
-=========================================================
+:file:`rearrange_data.pl` -- Script to rearrange fetched data
+=============================================================
 
-This script rearranges the data that has been fetched to the local computer using the Ansible playbook :file:`fetch-data`. The Ansible playbook leaves data in the directory ``/data/fetched`` in an inconvenient, nested set of directories. This script will instead move those files into a subdirectory of ``/data/cleaned`` for the current experiment.
+This script rearranges the data that has been fetched to the local computer using the Ansible playbook :file:`fetch-data`. The Ansible playbook leaves data in the directory :file:`/data/fetched` in an inconvenient, nested set of directories. This script will instead move those files into a subdirectory of :file:`/data/cleaned` for the current experiment.
 
 There are a few variables that are important in this script::
 
