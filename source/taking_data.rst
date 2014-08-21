@@ -125,4 +125,9 @@ At this point, all of the data is still on the Mac Minis. To fetch it to the con
    	
 These scripts are documented at :doc:`fetch-data` and :doc:`rearrange_data`. After running them, the data should be found in :file:`/data/cleaned/[experiment name]`.
 
+Quitting the system
+-------------------
+
+To quit all of the components of the system, go to the terminal window hosting the main menu and type :kbd:`tk Enter` to get to the :guilabel:`Toolkit`. From there, type :kbd:`kall Enter` to kill all components of the system. From there, follow the prompts to exit the main menu. If NARVAL is open on the Mac Minis, the same method can be used to close it there.
+
 
