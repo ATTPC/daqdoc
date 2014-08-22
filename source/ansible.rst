@@ -34,14 +34,56 @@ The inventory is the list of computers Ansible knows about. Ansible keeps its li
 	[inactive]
 	mm[3:5]
 
-The group "macminis" refers to all of them, while "active" and "inactive" refer to the ones we're currently using.
+The group "macminis" refers to all of them, while "active" and "inactive" refer to the ones we're currently using and the ones we aren't, respectively.
 
 ..  _ansible-command:
 
 Running a single command
 ------------------------
 
-A single command can be run on a collection of machines with Ansible. To do this, try:
+A single task can be run on a target machine using the command :program:`ansible`. The basic usage of this command is [#f1]_
+
+..  code-block:: bash
+
+	ansible <host-pattern> [-f forks] [-m module_name] [-a args]
+
+Arguments and Options
++++++++++++++++++++++
+
+..  program:: ansible
+
+..  option:: host-pattern
+
+	The hosts to run the command on. This should be an element of the inventory file (see :ref:`ansible-inventory`).
+
+..	option:: -f forks
+
+	Specifies the degree of parallelism. The default is 5.
+
+..  option:: -m module_name
+
+    Runs the specified module. Some examples are "command" or "shell". See http://docs.ansible.com/modules.html for a full list.
+
+..	option:: -a args
+
+	The arguments to be passed to the module. These should be given in quotes.
+
+..  option:: -s, --sudo
+
+	Uses :command:`sudo` to elevate privileges on the target machine
+
+..  option:: -k, --ask-pass
+
+	Ask for an SSH password instead of using public key authentication. This is useful when setting up a computer for the first time.
+
+.. 	option:: -v, --verbose
+
+	Gives more verbose output. Can be used a number of times. This is useful for debugging.
+
+Examples
+++++++++
+
+To run a single terminal command on a collection of computers, execute this:
 
 ..	code-block:: bash
 	
@@ -53,7 +95,7 @@ For instance, to list the contents of :file:`/daq` on each computer, run
 
 	$ ansible macminis -m command -a "ls /daq"
 
-A command can be run with :command:`sudo` by using the option :option:`--sudo`. For example, to reboot all of the Mac Minis, run
+If you wanted to reboot all of the Mac Minis, you could run the following command. Note that we need to use :option:`ansible --sudo` in this case.
 
 ..  code-block:: bash
 
@@ -68,4 +110,32 @@ Playbooks
 
 Ansible playbooks are reusable lists of tasks for Ansible to run. There are a variety of these in the directory :file:`~/ansible-attpc`, and they are all documented at :ref:`ansible-scripts-dir`.
 
-Briefly, to run a playbook, use the command :command:`ansible-playbook`. Some important options are :option:`-l`, which limits the playbook to run on only the specified hosts, and :option:`-f`, which controls the parallelism of the run. More can be found in the man page for this command.
+To run a playbook, use the command :program:`ansible-playbook`:[#f2]_
+
+..  code-block:: bash
+
+	ansible-playbook <filename.yml> ... [options]
+
+Arguments and Options
++++++++++++++++++++++
+
+..  program:: ansible-playbook
+
+..  option:: filename.yml
+
+	The Ansible playbook file(s) to run. 
+
+..  option:: -f num
+
+	The degree of parallelism to use. The default is 5.
+
+..  option:: -l subset
+
+	Limit the execution to a subset of the hosts specified in the playbook file. 
+
+Additionally, the :command:`sudo`- and password-related options from :program:`ansible` apply for :program:`ansible-playbook` as well.
+
+..  rubric:: Footnotes
+
+..  [#f1] Taken from the manual page for :command:`ansible`.
+..  [#f2] Taken from the manual page for :command:`ansible-playbook`.
