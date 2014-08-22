@@ -16,6 +16,8 @@ Contents
    :maxdepth: 3
    
    components.rst
+   computer-roles.rst
+   setup.rst
    exp_setup.rst
    taking_data.rst
    ansible.rst
