@@ -170,7 +170,7 @@ The next step is to create packet filtering rules to perform the NAT. First, ena
 
 Now we need to make the rules for packet forwarding. Go to the directory :file:`/etc/pf.anchors` and open the file :file:`com.apple`. Add these lines near the top::
 
-	nat-anchor "100-attpcNATRules/*"
+	nat-anchor "100.attpcNATRules/*"
 	rdr-anchor "100.attpcNATRules/*"
 	load anchor "100.attpcNATRules" from "/etc/pf.anchors/attpcNATRules"
 
