@@ -1,5 +1,5 @@
-Roles of the various computers
-==============================
+Computer roles and network layout
+=================================
 
 Each computer in the DAQ network plays a particular role.
 
@@ -51,7 +51,6 @@ It is also still used for flashing firmware onto the CoBos, for debugging CoBos,
 | Hostname           | ``attpc-iMac.local``            |
 +--------------------+---------------------------------+
 | IP Address         | ``192.168.41.2``,               |
-|                    | ``192.168.40.2``,               |
 |                    | (External Address also present) |
 +--------------------+---------------------------------+
 | Operating System   | Mac OS X 10.9                   |
@@ -59,4 +58,9 @@ It is also still used for flashing firmware onto the CoBos, for debugging CoBos,
 | GUI on by default? | Yes                             |
 +--------------------+---------------------------------+
 
+Network topology
+----------------
 
+The diagram below shows the layout of the local DAQ network.
+
+..  image:: images/net_layout.svg
