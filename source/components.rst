@@ -12,7 +12,7 @@ NARVAL does the majority of the work in the system, as it is the program that ac
 
 ..  warning::
 
-	NARVAL communicates with itself using SSH, even within one computer. Therefore, SSH host key authentication *must* be configured on all computers running NARVAL. 
+	NARVAL communicates with itself internally using SSH. Therefore, SSH host key authentication *must* be configured on all computers running NARVAL. 
 
 ..  warning::
 
@@ -32,7 +32,7 @@ This should only be run on the control computer.
 RCC GUI
 -------
 
-This Java GUI is the main way to interact with the system. This program has a graphical interface to start/stop runs and describe the topology of the system. This program can be run from any computer, but should mainly be used on the control computer. 
+This Java GUI is the main way to interact with the system. The interface can be used to start and stop runs and to describe the topology of the system. This program can be run from any computer, but should mainly be used on the control computer. 
 
 ..  image:: images/rccgui.png
 

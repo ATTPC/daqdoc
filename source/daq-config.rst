@@ -9,17 +9,17 @@ This directory contains the configuration information for the Mac Minis. It hand
 	- Configuring the environment on each computer to load the correct variables for the DAQ system
 	- Installing the DAQ and GET packages themselves
 
-The actual tasks are automated by Ansible, and they can all be easily read in the YAML files in the directory.
+The actual tasks are automated by Ansible, and they can all be easily read in the `YAML files <http://en.wikipedia.org/wiki/YAML>`_ in the directory.
 
-To apply this configuration, run the following in the terminal **as root** (or using :command:`sudo`):
+To apply this configuration, run the following in the terminal:
 
 ..  code-block:: bash
 	
 	$ cd ~/ansible-attpc/daq-config
-	$ ansible-playbook site.yml -f 10
+	$ sudo ansible-playbook site.yml -f 10
 
-Note that the :file:`site.yml` file is set to apply the configuration to *all* mac minis. To change this, either change the ``hosts`` directive in :file:`site.yml` or use the option :option:`-l` in the :command:`ansible-playbook` command. For example, to just apply the configuration to ``mm1``, run (as root)
+Note that the :file:`site.yml` file is set to apply the configuration to *all* mac minis. To change this, either change the ``hosts`` directive in :file:`site.yml` or use :option:`ansible-playbook -l`. For example, to just apply the configuration to ``mm1``, run (as root)
 
 ..  code-block:: bash
 	
-	$ ansible-playbook site.yml -l mm1
+	$ sudo ansible-playbook site.yml -l mm1

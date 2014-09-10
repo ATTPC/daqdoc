@@ -16,18 +16,18 @@ Most of this can be done within the RCC GUI.
     
 ..  note::
     
-    Throughout this process, make sure to save frequently with :kbd:`Control-s`.
+    Throughout this process, make sure to save frequently with :kbd:`Ctrl-s`.
 
 Initializing the experiment
 ---------------------------
 
-Start by running the script :file:`start_ACQ` (located in the :file:`/daq/ACQ_HOST/latest/Scripts` directory). This should be in the environment's :envvar:`PATH` already, so it can be run from any working directory. The script takes one argument: the name of the experiment to be created. For example, to start an experiment called "demo", run this command in a terminal:
+Start by running the script :file:`start_ACQ` (located in the :file:`/daq/ACQ_HOST/latest/Scripts` directory). This should be in the environment's :envvar:`PATH` variable already, so it can be run from any working directory. The script takes one argument: the name of the experiment to be created. For example, to start an experiment called "demo", run this command in a terminal:
 
 ..  code-block:: bash
     
     $ start_ACQ demo
     
-This will ask a series of questions. 
+This will ask a series of questions. Respond as follows:
 
   #. Say yes to create the root directory of the experiment (under :file:`~/ganacq_manip`)
   #. Accept the default data storage path (:file:`/data/attpcX`)
@@ -37,11 +37,11 @@ Now you should see the main menu:
 
 ..  image:: images/acqmenu.png
 
-Type :kbd:`p a Enter` to edit some experiment variables. This will bring up a :command:`nedit` window.
+Type :kbd:`pa Enter` to edit some experiment variables. This will bring up a :command:`nedit` window.
 
 ..  image:: images/acqparams.png
 
-Scroll down and find the section
+Scroll down and find the following section:
 
 ..  code-block:: perl
 
@@ -62,9 +62,9 @@ Uncomment the last line of this and change it to say
 
     $ENV{'ACQ_SERV_NAME'} = "control";
     
-This tells the system that the computer called "control" will be running RCC server and controlling the experiment. Save this file and close it to return to the main menu.
+This tells the system that the computer with the hostname "control" will be running RCC server and controlling the experiment. Save this file and close it to return to the main menu.
 
-At this point, we're ready to launch the rest of the system. Type :kbd:`r c Enter` to launch NARVAL, RCC, the RCC GUI, and the rest of the components. Be patient as this takes a moment and opens a lot of windows.
+At this point, we're ready to launch the rest of the system. Type :kbd:`rc Enter` to launch NARVAL, RCC, the RCC GUI, and the rest of the components. Be patient as this takes a moment and opens a lot of windows.
 
 Describing the equipment
 ------------------------

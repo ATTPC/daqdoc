@@ -2,18 +2,18 @@
 Files and Directories
 =====================
 
-This page describes some of the installed files and directories for the system.
+This page describes some of the installed files and directories on the system.
 
 DAQ Directory
 -------------
 
-All of the files used by the DAQ system are installed under :file:`/daq`. This choice of location isn't particularly important, but it is provided to Narval at compile-time, so once the system has been compiled, the files cannot be moved.
+All of the files used by the DAQ system are installed under :file:`/daq`. This choice of location isn't particularly important, but it is provided to NARVAL at compile-time, so once the system has been compiled, the files cannot be moved.
 
 The scripts used by the DAQ system to launch different components are particular about where each file is located. To make this easier to deal with, the computers have a structure of symbolic links instead of just installing the files in place. 
 
 The files are organized as follows:
 
-- :file:`/daq` -- This is the root of the daq system tree.
+- :file:`/daq` -- This is the root of the DAQ system tree.
 
   - :file:`ACQ_HOST` -- Holds the symbolic link structure.
   

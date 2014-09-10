@@ -34,7 +34,7 @@ The inventory is the list of computers Ansible knows about. Ansible keeps its li
 	[inactive]
 	mm[3:5]
 
-The group "macminis" refers to all of them, while "active" and "inactive" refer to the ones we're currently using and the ones we aren't, respectively.
+The group "macminis" refers to all of them, while "active" and "inactive" refer to the ones that we're currently using and the ones that we aren't, respectively.
 
 ..  _ansible-command:
 
@@ -50,6 +50,8 @@ A single task can be run on a target machine using the command :program:`ansible
 Arguments and Options
 +++++++++++++++++++++
 
+Following are a few useful options for the :program:`ansible` command. There are many more options, though, and these are documented in the command's manual page.
+
 ..  program:: ansible
 
 ..  option:: host-pattern
@@ -58,7 +60,7 @@ Arguments and Options
 
 ..	option:: -f forks
 
-	Specifies the degree of parallelism. The default is 5.
+	Specifies the degree of parallelism, or the number of hosts to run the command on at once. The default is 5. Use 10 to run the command on all ten Mac Minis at once.
 
 ..  option:: -m module_name
 
@@ -95,7 +97,7 @@ For instance, to list the contents of :file:`/daq` on each computer, run
 
 	$ ansible macminis -m command -a "ls /daq"
 
-If you wanted to reboot all of the Mac Minis, you could run the following command. Note that we need to use :option:`ansible --sudo` in this case.
+If you wanted to reboot all of the Mac Minis, you could run the following command. Note that we need to use :option:`--sudo` in this case.
 
 ..  code-block:: bash
 
@@ -103,7 +105,7 @@ If you wanted to reboot all of the Mac Minis, you could run the following comman
 
 ..  note::
 	
-	Many commands could be done more efficiently by using Ansible's built-in modules. For information about this, see http://docs.ansible.com/modules.html.
+	Many commands can be done more efficiently by using Ansible's built-in modules. For information about this, see http://docs.ansible.com/modules.html.
 
 Playbooks
 ---------
@@ -123,7 +125,7 @@ Arguments and Options
 
 ..  option:: filename.yml
 
-	The Ansible playbook file(s) to run. 
+	The Ansible playbook file(s) to run.
 
 ..  option:: -f num
 
