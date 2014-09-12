@@ -3,7 +3,7 @@
 :file:`distrib-experiment` -- Copies the DAQ experiment directory to the Mac Minis
 ==================================================================================
 
-This Ansible playbook syncs the given experiment directory to the Mac Minis. This should be done after any change to the configuration in RCC-GUI so that NARVAL can know about all of the components.
+This Ansible playbook syncs the given experiment directory to the Mac Minis. This should be done when a new experiment is created.
 
 The script can be run like this::
 

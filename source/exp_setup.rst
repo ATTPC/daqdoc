@@ -9,10 +9,6 @@ It takes a bit of work to set up an experiment the first time. The main tasks ar
   - Distribute this information to the Mac Minis
   
 Most of this can be done within the RCC GUI.
-
-..  warning::
-
-    Some of this information is a bit preliminary, and it could change in the near future if we discover a better way to configure the system.
     
 ..  note::
     
@@ -73,26 +69,21 @@ Once the RCC GUI window appears, we can start to describe the DAQ topology. Init
 
 ..  image:: images/empty_rccgui.png
 
-Adding NARVAL subsystems
-++++++++++++++++++++++++
+Adding a NARVAL subsystem
++++++++++++++++++++++++++
 
-Start by adding a NARVAL subsystem for each Mac Mini. Click on :guilabel:`Narval sub-systems` at the top of the window and then click :guilabel:`New` in the window that appears. Then fill in information for each subsystem as follows:
+Start by adding a NARVAL subsystem for the data acquisition. Click on :guilabel:`Narval sub-systems` at the top of the window and then click :guilabel:`New` in the window that appears. Then fill in the following information
 
 +----------------+-------------------------+
 |Item            | Value                   |
 +================+=========================+
-|Name            | :samp:`NARVAL{X}`       |
+|Name            | ``Acquisition``         |
 +----------------+-------------------------+
-|Hostname        | :samp:`192.168.41.6{X}` |
+|Hostname        | ``192.168.41.10``       |
 +----------------+-------------------------+
-|Coordinator CPU | :samp:`192.168.41.6{X}` |
+|Coordinator CPU | ``192.168.41.10``       |
 +----------------+-------------------------+
 
-Here, ``X`` is to be replaced with the index of the Mac Mini in question. Here is a completed window for ``mm0``:
-
-..  image:: images/new_narval_subsys.png
-
-Repeat this process for each Mac Mini.
 
 Adding components
 +++++++++++++++++
@@ -118,10 +109,10 @@ Next we need to add the components that collect data from each CoBo. Start by cl
 +------------------+----------------------------------+
 |Template file     | ``gnarval_mfm_catcher.template`` |
 +------------------+----------------------------------+
-|Narval sub-system | :samp:`NARVAL{X}`                |
+|Narval sub-system | ``Acquisition``                  |
 +------------------+----------------------------------+
 
-Again, replace the ``X`` with the index of the Mac Mini. The window should look like this (for ``mm0``):
+The window should look like this when filled in, except the :guilabel:`Narval sub-system` field should be automatically filled with the name of the subsystem you made in the first step:
 
 ..  image:: images/new_mfm_catcher.png
 
@@ -129,7 +120,7 @@ Again, replace the ``X`` with the index of the Mac Mini. The window should look 
     
     The name of the MFM catcher *must* match the name of a CoBo in the configuration files given to ECC server. Generally, the file calls the CoBos ``CoBo`` and then indexes them, hence ``CoBo[0]``, ``CoBo[1]`` etc. are appropriate names.
     
-Next, add a component of the type "MFM Narval Watcher actor". Fill in
+Optionally, add a component of the type "MFM Narval Watcher actor". Fill in
 
 +------------------+----------------------------------+
 |Item              | Value                            |
@@ -140,12 +131,12 @@ Next, add a component of the type "MFM Narval Watcher actor". Fill in
 +------------------+----------------------------------+
 |Log Level         | (any)                            |
 +------------------+----------------------------------+
-|Narval sub-system | :samp:`NARVAL{X}`                |
+|Narval sub-system | ``Acquisition``                  |
 +------------------+----------------------------------+
 
 And finally add a component of the type "MFM Narval Storage actor" with the same settings as the watcher actor, but with the name :samp:`Storage{X}`.
 
-Repeat this process for each Mac Mini.
+Repeat this process for each CoBo.
 
 Linking components
 ++++++++++++++++++
@@ -158,7 +149,7 @@ Click and drag from one component to another to add a link. The links between th
 
 ..  image:: images/link_ecc.png
 
-Note that I've selected ``eth1`` for both ports and added two zeros to the buffer size. The rest of the settings are the defaults.
+Note that I've selected ``eth1`` for both ports and added two zeros to the buffer size. The rest of the settings are the defaults. The name of the link is not important, but it must be unique.
 
 For links between NARVAL components, use these settings:
 
@@ -166,13 +157,10 @@ For links between NARVAL components, use these settings:
 
 This time, everything is left as the default except for the buffer size.
 
-When you've finished linking components, the setup should look something like this:
+When you've finished linking components, the layout should look something like this:
 
-..  image:: images/full_rccgui.png
+..  image:: images/complete_layout.png
 
-..  note::
-
-    I've used different names for the NARVAL subsystems in this image. It doesn't matter what they're called as long as it's meaningful and consistent. The only constraint is that each subsystem must have a unique name.
     
 Start and stop configurations
 -----------------------------
@@ -189,26 +177,14 @@ Now, choose :guilabel:`Configuration->Stop configuration` and arrange the compon
 Distributing the configuration to the Mac Minis
 -----------------------------------------------
 
-Now we need to trick the system into producing the NARVAL configuration files. Do this by clicking :guilabel:`Mode->Monitoring mode`. This puts the RCC server into a mode where it's ready to take commands, and it should also try to communicate with the NARVAL processes on the Mac Minis. 
-
-..  note::
-    
-    This will produce error messages if NARVAL is not running on the Mac Minis or ECC server is not running on the control computer. These messages can be ignored.
-    
-After waiting a moment, put the system back into :guilabel:`Editing mode`. 
-
-..  warning::
-
-    To be on the safe side, it is probably best to save and quit the DAQ system on the control computer before continuing. Do this by going back to the main menu and pressing :kbd:`tk Enter kall Enter`.
-    
-Now open a terminal and execute the following commands:
+Next, we need to run a script to create the data directories on the Mac Minis. Otherwise RCC will complain that it can't store data because the directories do not exist. To do this, open a terminal and execute the following commands:
 
 ..  code-block:: bash
 
     $ cd ~/ansible-attpc/distrib-experiment
     $ ansible-playbook distribute.yml -f 10 --extra-vars "exp_name=[experiment name]"
 
-Replace ``[experiment name]`` with the name of your experiment. This will sync the RCC and NARVAL configuration files to the Mac Minis. (This is described in more detail in :doc:`distrib-experiment`.)
+Replace ``[experiment name]`` with the name of your experiment. (This is described in more detail in :doc:`distrib-experiment`.)
 
 Once this finishes, you should be ready to take data.
     

@@ -3,46 +3,18 @@ Taking data
 
 To take data with the system, we need to complete the following tasks:
 
-  - Launch NARVAL on each Mac Mini
   - Launch ECC server
   - Start and stop runs
   - Fetch data
   
 You should have already set up an experiment as described in :doc:`exp_setup` before continuing.
 
-Launching NARVAL on the Mac Minis
----------------------------------
+Launching ECC server and the Main Menu
+--------------------------------------
 
-..  note:: 
-    
-    This section is preliminary.
-    
-Open a terminal window and ssh into the first Mac Mini:
+The easiest way to do this is to run the script :file:`start_DAQ.sh` on the desktop of the control computer. This will open a terminal window with two tabs: one for ECC server and another for the main menu.
 
-..  code-block:: bash
-
-    $ ssh mm0
-    
-..  note::
-
-    The SSH config file should be set up to automatically provide X forwarding. If it isn't, then use the flags :option:`-XYC` with this command.
-    
-Once connected, open the main menu by executing
-
-..  code-block:: bash
-
-    $ start_ACQ [experiment name]
-    
-where ``[experiment name]`` is the name of your experiment. At the main menu, type :kbd:`tk Enter` to choose Toolkit and then type :kbd:`na Enter` to launch NARVAL.
-
-..  image:: images/toolkit.png
-
-Repeat this step for each Mac Mini in a new tab, keeping each SSH connection open.
-
-Launching ECC server
---------------------
-
-GET ECC server should be launched on the control computer. Open another terminal window and either run the script :file:`/daq/start_ecc_server.sh` or execute the commands
+To do this manually, start by opening a terminal window and running these commands:
 
 ..  code-block:: bash
 
@@ -54,12 +26,16 @@ GET ECC server should be launched on the control computer. Open another terminal
 
     The path given for :option:`--config-repo-url` should be whatever path contains the config files for the CoBos.
     
-Leave this running in the background.
+Leave this running in the background. Then, open the Main Menu in another terminal window by running 
+
+..  code-block:: bash
+
+    $ start_ACQ [experiment name]
 
 Preparing RCC GUI
 -----------------
 
-Open the main menu on the control computer and launch RCC server using :kbd:`rc Enter`. Once RCC GUI appears, go to :guilabel:`Mode -> Monitoring mode`. After a moment, all components should show that they are in the "Idle" state. 
+From the main menu, launch RCC server by typing :kbd:`rc Enter`. Once RCC GUI appears, go to :guilabel:`Mode -> Monitoring mode`. After a moment, all components should show that they are in the "Idle" state. 
 
 ..  image:: images/rcc_idle.png
 
@@ -94,7 +70,7 @@ Begin by pressing :guilabel:`Init`. This will take a while, and the progress can
 
 ..  note:: 
 
-    Once the NARVAL subsystems initialize, an :command:`xterm` window for each one will pop up on the screen. These can be minimized, but they must be left open. Also note that these are running on the Mac Minis, but are being shown on the control computer due to X forwarding.
+    Once the NARVAL subsystems initialize, an :command:`xterm` window for each one will pop up on the screen. These can be minimized, but they must be left open.
     
 Once initialization has finished, everything should show a "Ready" state (teal). 
 
@@ -106,9 +82,7 @@ Now we have to enable storage on each Mac Mini. Right-click on each Storage comp
 
     If you don't want to store data, there's no need to complete this step. This can be useful for checking to make sure everything is working before actually starting a data-taking run. 
     
-Now, click :guilabel:`Start` to start a run. If you've enabled storage, a window will pop up to take a comment for the run. This can be changed or left as the default. When everything is running, the window should look like this:
-
-..  image:: images/rcc_running.png
+Now, click :guilabel:`Start` to start a run. If you've enabled storage, a window will pop up to take a comment for the run. This can be changed or left as the default. When everything is running, the status indicator on each NARVAL actor should be green.
 
 To stop a run, click :guilabel:`Stop`. If you want to reset the system, click :guilabel:`Exit`.
 
@@ -128,6 +102,6 @@ These scripts are documented at :doc:`fetch-data` and :doc:`rearrange_data`. Aft
 Quitting the system
 -------------------
 
-To quit all of the components of the system, go to the terminal window hosting the main menu and type :kbd:`tk Enter` to get to the :guilabel:`Toolkit`. From there, type :kbd:`kall Enter` to kill all components of the system. From there, follow the prompts to exit the main menu. If NARVAL is open on the Mac Minis, the same method can be used to close it there.
+To quit all of the components of the system, go to the terminal window hosting the main menu and type :kbd:`tk Enter` to get to the :guilabel:`Toolkit`. From there, type :kbd:`kall Enter` to kill all components of the system. From there, follow the prompts to exit the main menu. 
 
 
