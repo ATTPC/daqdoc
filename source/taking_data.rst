@@ -12,21 +12,9 @@ You should have already set up an experiment as described in :doc:`exp_setup` be
 Launching ECC server and the Main Menu
 --------------------------------------
 
-The easiest way to do this is to run the script :file:`start_DAQ.sh` on the desktop of the control computer. This will open a terminal window with two tabs: one for ECC server and another for the main menu.
+The easiest way to do this is to run the script :file:`start_DAQ.sh` on the desktop of the control computer. This will open a terminal window and prompt for the experiment name. This should be the name of an experiment that has already been configured.
 
-To do this manually, start by opening a terminal window and running these commands:
-
-..  code-block:: bash
-
-    $ bash
-    $ source /daq/GET/latest/GETUP
-    $ getEccSoapServer --config-repo-url /daq/GET/latest/runtime/Configs/
-    
-..  note::
-
-    The path given for :option:`--config-repo-url` should be whatever path contains the config files for the CoBos.
-    
-Leave this running in the background. Then, open the Main Menu in another terminal window by running 
+To open the main menu manually, open a terminal and run
 
 ..  code-block:: bash
 
@@ -39,11 +27,11 @@ From the main menu, launch RCC server by typing :kbd:`rc Enter`. Once RCC GUI ap
 
 ..  image:: images/rcc_idle.png
 
-Right-click on the ECC component and choose :guilabel:`Specific command panel`. This opens the window that we can use to interact with the ECC server.
+Right-click on an ECC component and choose :guilabel:`Specific command panel`. This opens a window that we can use to interact with the ECC server.
 
 ..  image:: images/ecc_panel.png
 
-Choose the correct combination of config files from the list and press :guilabel:`Change`. Either close this window or drag it out of the way.
+Choose the correct combination of config files for this particular ECC server from the list and press :guilabel:`Change`. Either close this window or drag it out of the way. Repeat this step for each ECC server, choosing the appropriate configurations each time.
 
 Controlling runs
 ----------------
@@ -66,13 +54,7 @@ Stop
 Exit
     Un-configures the equipment and closes NARVAL subsystems. This is like resetting the system.
     
-Begin by pressing :guilabel:`Init`. This will take a while, and the progress can be monitored in the terminal window that's running :command:`getEccSoapServer`.
-
-..  note:: 
-
-    Once the NARVAL subsystems initialize, an :command:`xterm` window for each one will pop up on the screen. These can be minimized, but they must be left open.
-    
-Once initialization has finished, everything should show a "Ready" state (teal). 
+Begin by pressing :guilabel:`Init`. This will take a while, and the progress can be monitored in the :guilabel:`Messages` area at the bottom of the screen. Once initialization has finished, everything should show a "Ready" state (teal). 
 
 Now we have to enable storage on each Mac Mini. Right-click on each Storage component and choose :guilabel:`Modify`. In the window that pops up, enable the checkbox :guilabel:`Storage` and click :guilabel:`Close`.
 
