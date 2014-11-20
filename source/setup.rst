@@ -46,7 +46,7 @@ Compiling the software
 
 The DAQ software has to be compiled before it can be used. It's easiest to do this on the control computer and then copy it to the Mac Minis. 
 
-In addition to a compiler, the packages needed to compile the software:
+In addition to a compiler, these packages are needed to compile the software:
 
 	- gsoap
 	- gsoap-devel

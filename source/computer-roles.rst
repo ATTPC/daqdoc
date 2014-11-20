@@ -6,7 +6,7 @@ Each computer in the DAQ network plays a particular role.
 Control computer
 ----------------
 
-This is the Dell tower that's currently on a movable computer cart. Its purpose is to compile the DAQ system, run :ref:`rcc`, and control the acquisition of data. 
+This is the Dell tower. Its purpose is to compile the DAQ system, run :ref:`rcc`, and control the acquisition of data. This is the main computer that you will interact with to control the DAQ system.
 
 +--------------------+-------------------+
 |      Property      |       Value       |

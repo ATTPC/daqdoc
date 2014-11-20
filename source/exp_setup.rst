@@ -22,6 +22,10 @@ Start by running the script :file:`start_ACQ` (located in the :file:`/daq/ACQ_HO
 ..  code-block:: bash
     
     $ start_ACQ demo
+
+..  note:: 
+    
+    There is also a script on the desktop called "start_DAQ.sh" that launches this if you double-click it. It will then prompt you for the experiment name before opening the main menu.
     
 This will ask a series of questions. Respond as follows:
 
@@ -84,6 +88,10 @@ Start by adding a NARVAL subsystem for the data acquisition. Click on :guilabel:
 |Coordinator CPU | ``192.168.41.10``       |
 +----------------+-------------------------+
 
+..  warning::
+
+    Whenever RCC GUI asks for a hostname, use the IP address and not just the name of the computer. If you use the hostname, ECC server will not provide the correct data router IP address to the CoBos.
+
 
 Adding components
 +++++++++++++++++
@@ -92,9 +100,21 @@ To add a component, click anywhere in the grid and then click the green :guilabe
 
 ..  image:: images/add_component.png
 
-Start by adding the ECC server. In the :guilabel:`Choose equipment type` window, choose "Electronics Control Core" and press :guilabel:`OK`. Name it "ECC" (or anything else reasonable), give it the HostName ``192.168.41.10`` (the IP address of the control computer), and leave the port as ``8083``. Press :guilabel:`Add 1 ECC` and the server will appear on the grid.
+Start by adding the ECC servers. There should be one for each active CoBo. ECC server is run as a service on each Mac Mini. In the :guilabel:`Choose equipment type` window, choose "Electronics Control Core" and press :guilabel:`OK`. Give it the name "ECC0", the HostName "192.168.41.60" and the default port number "8083". Then click :guilabel:`Add 1 ECC`. The ECC server should then appear on the grid:
 
 ..  image:: images/ecc_on_grid.png
+
+Repeat this process to add an ECC server for each CoBo. Use the settings in this table:
+
++------------------+----------------------------------+
+|Item              | Value                            |
++==================+==================================+
+|Name              | :samp:`ECC{X}`                   |
++------------------+----------------------------------+
+|HostName          | :samp:`192.168.41.6{X}`          |
++------------------+----------------------------------+
+|Port              | 8083                             |
++------------------+----------------------------------+
 
 Next we need to add the components that collect data from each CoBo. Start by clicking on the grid and adding a component of the type "Narval actor defined by a template file". Enter these values:
 
@@ -149,7 +169,7 @@ Click and drag from one component to another to add a link. The links between th
 
 ..  image:: images/link_ecc.png
 
-Note that I've selected ``eth1`` for both ports and added two zeros to the buffer size. The rest of the settings are the defaults. The name of the link is not important, but it must be unique.
+Note that I've selected ``eth1`` for both ports and added two zeros to the buffer size. The rest of the settings are the defaults. The name of the link is not important, but it must be unique. It's best to use something systematic to avoid problems with conflicting names in the future. One option is to call every link from the ECC to the catcher :samp:`in{X}` and every link from catcher to storage :samp:`storage{X}`, where X is the number of the CoBo.
 
 For links between NARVAL components, use these settings:
 
@@ -165,13 +185,19 @@ When you've finished linking components, the layout should look something like t
 Start and stop configurations
 -----------------------------
 
-Next, we must tell RCC what order to start and stop the components in when we start and stop runs. In the menu bar, choose :guilabel:`Configuration->Start configuration`. Add components to the list such that all of the NARVAL subsystems start *before* ECC starts. That way, the computers will be ready when data starts to flow.
+Next, we must tell RCC in what order to start and stop the components when we start and stop runs. In the menu bar, choose :guilabel:`Configuration->Start configuration`. Add components to the list such that all of the NARVAL subsystems start *before* all of the ECC servers start. That way, the computers will be ready when data starts to flow.
 
 ..  image:: images/start_config.png
 
-Now, choose :guilabel:`Configuration->Stop configuration` and arrange the components in the opposite order (or, just make sure that ECC stops first):
+Now, choose :guilabel:`Configuration->Stop configuration` and arrange the components in the opposite order (or, just make sure that the ECC servers stop first):
 
 ..  image:: images/stop_config.png
+
+..  warning::
+
+    Since it takes a moment to stop each ECC server, and they are done in series, it is possible to have a variable number of events in each data file. This would produce events where only part of the micromegas was recorded.
+
+    To avoid this problem when running with external trigger, make sure to connect the trigger **after** starting the DAQ and disconnect it **before** stopping the DAQ.
 
 
 Distributing the configuration to the Mac Minis
