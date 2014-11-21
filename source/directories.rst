@@ -43,6 +43,8 @@ The files are organized as follows:
     
     - More versions
     
+  - :file:`Configs` -- Location where GET ECC config files are kept. This is shared with NFS.
+    
 Data Directory
 --------------
 
