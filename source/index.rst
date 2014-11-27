@@ -22,3 +22,4 @@ Contents
    taking_data.rst
    ansible.rst
    directories.rst
+   troubleshooting.rst
